@@ -1,0 +1,17 @@
+# folders
+.vscode
+build
+
+# files
+*.a
+*.o
+*.out
+*.log
+*.txt
+test*.cpp
+zombie
+brain
+violence
+replace
+harl
+harlFilter
