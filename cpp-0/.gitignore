@@ -1,0 +1,12 @@
+# folders
+.vscode
+build
+
+# files
+*.a
+*.o
+*.out
+megaphone
+phonebook
+accounts
+*.log
