@@ -2,7 +2,7 @@
 #include <iostream>
 
 Fixed::Fixed()
-    : m_value(0)
+    : m_rawBits(0)
 {
 #ifdef DEBUG
     std::cout << "Defaut constructor called" << std::endl;
@@ -17,7 +17,7 @@ Fixed::~Fixed()
 }
 
 Fixed::Fixed(const Fixed& fixed) 
-    : m_value(fixed.m_value)
+    : m_rawBits(fixed.m_rawBits)
 {
 #ifdef DEBUG
     std::cout << "Copy constructor called" << std::endl;
@@ -30,7 +30,7 @@ Fixed& Fixed::operator= (const Fixed &fixed)
     std::cout << "Copy assignment operator called" << std::endl;
 #endif
 
-    m_value = fixed.m_value;
+    m_rawBits = fixed.m_rawBits;
     return *this;
 }
 
@@ -40,7 +40,7 @@ int Fixed::getRawBits(void) const
     std::cout << "getRawBits member function called" << std::endl;
 #endif
 
-    return m_value;
+    return m_rawBits;
 }
 
 void Fixed::setRawBits(const int raw)
@@ -49,5 +49,5 @@ void Fixed::setRawBits(const int raw)
     std::cout << "setRawBits member function called" << std::endl;
 #endif
 
-    m_value = raw;
+    m_rawBits = raw;
 }

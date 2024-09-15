@@ -14,7 +14,7 @@ public:
 
 
 private:
-    int                 m_value;
+    int                 m_rawBits;
     static const int    s_fractionalBits = 8;
 
 };
