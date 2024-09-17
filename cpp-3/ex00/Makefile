@@ -20,7 +20,7 @@ SRC		= main.cpp \
 
 # Build
 ###########################
-.PHONY:	all clean fclean re debug
+.PHONY:	all clean fclean re
 
 all: $(NAME)
 
