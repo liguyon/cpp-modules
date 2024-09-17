@@ -5,7 +5,7 @@ CPPFLAGS	= -Wall -Wextra -Werror -std=c++98
 
 CPPLFLAGS	=
 # Debug
-CPPFLAGS 	+= -g -DDEBUG
+CPPFLAGS 	+= -g #-DDEBUG
 
 
 # Project files
