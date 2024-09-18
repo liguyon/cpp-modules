@@ -14,6 +14,8 @@ int main()
 
         ClapTrap c2("c2");
         c2 = c1;
+
+        ClapTrap def;
     }
 
     std::cout << "\n================================================\n\n";

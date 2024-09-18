@@ -2,6 +2,17 @@
 #include <iostream>
 
 
+ClapTrap::ClapTrap()
+    : m_name(""), // avoid UB
+    m_health(10), m_energy(10), m_attack(0)
+{
+#ifndef NDEBUG
+    std::cout << "ClapTrap default constructor called: '"
+        << m_name << "' created" << std::endl;
+    _debug();
+#endif
+}
+
 ClapTrap::ClapTrap(const std::string& name)
     : m_name(name), m_health(10), m_energy(10), m_attack(0)
 {
