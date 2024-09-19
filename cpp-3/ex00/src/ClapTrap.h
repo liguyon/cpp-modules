@@ -9,7 +9,7 @@ class ClapTrap
 public:
     ClapTrap();
     ClapTrap(const std::string& name);
-    ~ClapTrap();
+    virtual ~ClapTrap();
     ClapTrap(const ClapTrap& clapTrap);
     ClapTrap& operator= (const ClapTrap& clapTrap);
 
@@ -23,8 +23,8 @@ public:
         - in the specific case of cpp-2, entities stats will never
             overflow INT_MAX, so there is no reason really to use unsigned ints
     */
-    void takeDamage(int amount);
-    void beRepaired(int amount);
+    virtual void takeDamage(int amount);
+    virtual void beRepaired(int amount);
 
 private:
     std::string m_name;

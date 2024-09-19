@@ -9,7 +9,7 @@ class ClapTrap
 public:
     ClapTrap();
     ClapTrap(const std::string& name);
-    ~ClapTrap();
+    virtual ~ClapTrap();
     ClapTrap(const ClapTrap& clapTrap);
     ClapTrap& operator= (const ClapTrap& clapTrap);
 
@@ -19,9 +19,9 @@ public:
     int getEnergy() const;
     int getAttack() const;
 
-    void attack(const std::string& target);
-    void takeDamage(int amount);
-    void beRepaired(int amount);
+    virtual void attack(const std::string& target);
+    virtual void takeDamage(int amount);
+    virtual void beRepaired(int amount);
 
 protected:
 /* Eval sheet requires that we use protected attributes.
