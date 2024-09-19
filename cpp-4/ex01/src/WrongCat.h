@@ -12,4 +12,5 @@ public:
 	~WrongCat();
 	WrongCat& operator= (const WrongCat& other);
 
+	void makeSoul() const;
 };

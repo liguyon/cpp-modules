@@ -35,3 +35,8 @@ WrongCat& WrongCat::operator= (const WrongCat& other)
 
     return *this;
 }
+
+void WrongCat::makeSoul() const
+{
+	std::cout << type << ": Meow" << std::endl;
+}
