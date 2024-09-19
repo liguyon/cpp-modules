@@ -124,11 +124,12 @@ void ScavTrap::guardGate()
             m_energy -= 10;
             m_isGuarding = true;
             m_defense += 10;
-            std::cout << "ScavTrap " << m_name << " is guarding." << std::endl;
+            std::cout << "ScavTrap " << m_name
+                << " gains +10 defense on the next incoming attack." << std::endl;
         }
     }
     else
-        std::cout << "ScavTrap " << m_name << " is already guarding." << std::endl;
+        std::cout << "ScavTrap " << m_name << " already has Guard buff." << std::endl;
 }
 
 int ScavTrap::getDefense() const
