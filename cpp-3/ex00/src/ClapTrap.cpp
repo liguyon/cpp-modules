@@ -72,7 +72,7 @@ void ClapTrap::attack(const std::string& target)
     }
 }
 
-void ClapTrap::beRepaired(unsigned int amount)
+void ClapTrap::beRepaired(int amount)
 {
     if (m_health <= 0)
         std::cout << "ClapTrap " << m_name << " is dead. Cannot perform any action." << std::endl;
@@ -89,17 +89,15 @@ void ClapTrap::beRepaired(unsigned int amount)
     }
 }
 
-void ClapTrap::takeDamage(unsigned int amount)
+void ClapTrap::takeDamage(int amount)
 {
-    std::cout << "ClapTrap " << m_name << " takes " << amount << " damage." << std::endl;
-    if (amount >= static_cast<unsigned int>(m_health))
+    if (m_health > 0)
     {
-        m_health = 0;
-        std::cout << "ClapTrap " << m_name << " died." << std::endl;
-    }
-    else
+        std::cout << "ClapTrap " << m_name << " takes " << amount << " damage." << std::endl;
         m_health -= amount;
-
+        if (m_health <= 0)
+            std::cout << "ClapTrap " << m_name << " died." << std::endl;
+    }
 #ifndef NDEBUG
     _debug();
 #endif

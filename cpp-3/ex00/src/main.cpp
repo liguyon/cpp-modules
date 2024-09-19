@@ -39,7 +39,8 @@ int main()
         clapybara.takeDamage(1);
         clapybara.takeDamage(5);
         clapybara.beRepaired(6);
-        clapybara.takeDamage(2147483648);
+        clapybara.takeDamage(100);
+        clapybara.takeDamage(1);
         clapybara.attack("no one because clapybara is chill");
         clapybara.beRepaired(100);
         std::cout << "\n";
