@@ -22,25 +22,53 @@ int main()
 
 	{ // TEST: exceptions at construction
         std::cout <<
-			"==== TESTS: exceptions at construction (uncomment test cases) ====\n";
-		// Bureaucrat a("Moto", 0);
-		// Bureaucrat a("Deux roues", 151);
+			"==== TESTS: exceptions at construction ====\n";
+		try
+		{
+			Bureaucrat a("Moto", 0);
+		}
+		catch (const std::exception& e)
+		{
+			std::cerr << "caught exception : " << e.what() << std::endl;
+		}
+		try
+		{
+			Bureaucrat a("Deux roues", 151);
+		}
+		catch (const std::exception& e)
+		{
+			std::cerr << "caught exception : " << e.what() << std::endl;
+		}
 	}
 
     std::cout << "\n================================================\n\n";
 
 	{ // TEST: exceptions increment/decrement
         std::cout <<
-			"==== TESTS: exceptions increment/decrement (uncomment test cases) ====\n";
+			"==== TESTS: exceptions increment/decrement ====\n";
 		Bureaucrat a("Deux roux", 1);
 		a.decrement();
 		assert(a.getGrade() == 2);
 		a.increment();
 		assert(a.getGrade() == 1);
-		// a.increment();
-
+		try
+		{
+			a.increment();
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << "caught exception : " << e.what() << std::endl;
+		}
+		
 		Bureaucrat b("Quatre roues motrices", 150);
-		// b.decrement();
+		try
+		{
+			b.decrement();
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << "caught exception : " << e.what() << std::endl;
+		}
 	}
 
 	return 0;
