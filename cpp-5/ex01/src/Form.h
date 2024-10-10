@@ -11,12 +11,12 @@ class Form {
 public:
 	class GradeTooLowException : public std::exception {
 	public:
-		virtual const char* what() const throw();
+		virtual const char* what() const throw ();
 	};
 
 	class AlreadySignedException : public std::exception {
 	public:
-		virtual const char* what() const throw();
+		virtual const char* what() const throw ();
 	};
 
 	Form();

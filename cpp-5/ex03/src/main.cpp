@@ -21,7 +21,7 @@ int main()
 			bur.executeForm(*a);
 			delete a;
 		}
-		catch(const std::exception& e)
+		catch (const std::exception& e)
 		{
 			std::cout << e.what() << std::endl;
 		}
@@ -42,7 +42,7 @@ int main()
 			bur.executeForm(*a);
 			delete a;
 		}
-		catch(const std::exception& e)
+		catch (const std::exception& e)
 		{
 			std::cout << e.what() << std::endl;
 		}
@@ -63,7 +63,7 @@ int main()
 			bur.executeForm(*a);
 			delete a;
 		}
-		catch(const std::exception& e)
+		catch (const std::exception& e)
 		{
 			std::cout << e.what() << std::endl;
 		}
@@ -84,7 +84,7 @@ int main()
 			bur.executeForm(*a);
 			delete a;
 		}
-		catch(const std::exception& e)
+		catch (const std::exception& e)
 		{
 			std::cout << e.what() << std::endl;
 		}

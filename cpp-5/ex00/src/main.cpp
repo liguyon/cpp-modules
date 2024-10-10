@@ -55,7 +55,7 @@ int main()
 		{
 			a.increment();
 		}
-		catch(const std::exception& e)
+		catch (const std::exception& e)
 		{
 			std::cerr << "caught exception : " << e.what() << std::endl;
 		}
@@ -65,7 +65,7 @@ int main()
 		{
 			b.decrement();
 		}
-		catch(const std::exception& e)
+		catch (const std::exception& e)
 		{
 			std::cerr << "caught exception : " << e.what() << std::endl;
 		}
