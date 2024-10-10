@@ -27,7 +27,7 @@ static AForm* newRobotomyRequestForm(const std::string& target)
 	return new RobotomyRequestForm(target);
 }
 
-const FormFactoryEntry formFactories[3] = {
+static const FormFactoryEntry formFactories[3] = {
 	{"ShrubberyCreationForm", newShrubberyCreationForm},
 	{"RobotomyRequestForm", newRobotomyRequestForm},
 	{"PresidentialPardonForm", newPresidentialPardonForm},
@@ -54,7 +54,7 @@ Intern::~Intern()
 
 AForm* Intern::makeForm(const std::string& formName, const std::string& target) const
 {
-	for (int i = 0; i < 3; ++i)
+	for (size_t i = 0; i < (sizeof formFactories / sizeof *formFactories); ++i)
 	{
 		if (formName == formFactories[i].name)
 		{
@@ -62,7 +62,7 @@ AForm* Intern::makeForm(const std::string& formName, const std::string& target) 
 			return formFactories[i].factory(target);
 		}
 	}
-	throw(Intern::FormNotFoundException());
+	throw Intern::FormNotFoundException();
 }
 
 const char* Intern::FormNotFoundException::what() const throw()
