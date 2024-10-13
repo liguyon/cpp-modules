@@ -21,10 +21,13 @@ int main()
 		myAccountCredentials->login = "mayalabeille";
 		myAccountCredentials->password = "testPass123!";
 
+		std::cout << myAccountCredentials << std::endl;
 		uintptr_t serialized = Serializer::serialize(myAccountCredentials);
 		std::cout << serialized << std::endl;
 		std::cout << Serializer::deserialize(serialized)->login << std::endl;
 		std::cout << Serializer::deserialize(serialized)->password << std::endl;
+
+		delete myAccountCredentials;
 	}
 
 	return 0;
