@@ -21,6 +21,7 @@ private:
 	const std::string& getClosestDate(const std::string& date) const;
 
 private:
+	BitcoinExchange();
 	BitcoinExchange(const BitcoinExchange& other);
 	BitcoinExchange& operator= (const BitcoinExchange& other);
 };
