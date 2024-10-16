@@ -22,6 +22,8 @@ private:
 
 private:
 	BitcoinExchange();
+
+	// we don't want to copy, the exchange should be used as a singleton
 	BitcoinExchange(const BitcoinExchange& other);
 	BitcoinExchange& operator= (const BitcoinExchange& other);
 };
