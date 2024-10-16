@@ -1,19 +1,9 @@
 #pragma once
 
-#include <queue>
 #include <string>
 
 
-class RPN
+namespace RPN
 {
-
-public:
-	static double compute(const std::string& expression);
-
-private:
-	RPN();
-
-	static void parseInstructions(
-		std::queue<char>& queue, const std::string& expression);
-
-};
+	double compute(const std::string& expression);
+}

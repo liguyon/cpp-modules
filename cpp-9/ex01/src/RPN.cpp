@@ -1,84 +1,80 @@
 #include "RPN.h"
 
 #include <cstddef>
-#include <iostream>
+
+#include <stack>
+
 
 static const std::string allowedOperators = "+-*/";
 
-double RPN::compute(const std::string& expression)
+static bool checkExpression(const std::string &expression)
 {
-	std::queue<char> queue;
-	try
-	{
-		parseInstructions(queue, expression);
-	}
-	catch(int e)
-	{
-		throw "invalid expression";
-	}
-	if (queue.empty())
-		throw "empty expression";
-
-	double result;
-	char current = queue.front();
-	queue.pop();
-	if (!std::isdigit(current))
-		throw "invalid operand";
-	else
-		result = current - '0';
-	while (!queue.empty())
-	{
-		current = queue.front();
-		queue.pop();
-		if (queue.empty())
-			throw "invalid expression";
-		if (!std::isdigit(current))
-			throw "invalid operand";
-		int operand = current - '0';
-		current = queue.front();
-		queue.pop();
-		switch (current)
-		{
-		case '+':
-			result += operand;
-			break ;
-		case '-':
-			result -= operand;
-			break ;
-		case '*':
-			result *= operand;
-			break ;
-		case '/':
-			if (!operand)
-				throw "division by zero";
-			result /= operand;
-			break ;
-		default:
-			throw "invalid operator";
-		}
-	}
-
-	return result;
-}
-
-void RPN::parseInstructions(std::queue<char>& queue, const std::string &expression)
-{
+	if (!expression.length())
+		return false;
+	int countOperands = 0;
+	int countOperators = 0;
 	for (size_t i = 0; i < expression.length(); ++i)
 	{
-		if (i % 2 == 1)
+		if (i % 2)
 		{
-			if (expression[i] == ' ')
-				continue ;
-			else
-				throw -1;
+			if (expression[i] != ' ')
+				return false;
 		}
 		else
 		{
-			if (std::isdigit(expression[i])
-			|| allowedOperators.find(expression[i]) != allowedOperators.npos)
-				queue.push(expression[i]);
+			if (std::isdigit(expression[i]))
+				++countOperands;
+			else if (allowedOperators.find(expression[i]) != allowedOperators.npos)
+				++countOperators;
 			else
-				throw -1;
+				return false;
 		}
 	}
+	if (countOperands < 1)
+		return false;
+	return countOperands == countOperators + 1;
+}
+
+double RPN::compute(const std::string& expression)
+{
+	std::stack<double> operands;
+
+	if (!checkExpression(expression))
+		throw "invalid expression";
+
+	for (
+		std::string::const_iterator it = expression.begin();
+		it != expression.end();
+		++it)
+	{
+		if (std::isdigit(*it))
+			operands.push(*it - '0');
+		else if (*it == ' ')
+			continue ;
+		else
+		{
+			double y = operands.top();
+			operands.pop();
+			double x = operands.top();
+			operands.pop();
+			switch (*it)
+			{
+			case '+':
+				operands.push(x + y);
+				break ;
+			case '-':
+				operands.push(x - y);
+				break ;
+			case '*':
+				operands.push(x * y);
+				break ;
+			case '/':
+				if (!y)
+					throw "division by zero";
+				operands.push(x / y);
+				break ;
+			}
+		}
+	}
+	return operands.top();
 }
