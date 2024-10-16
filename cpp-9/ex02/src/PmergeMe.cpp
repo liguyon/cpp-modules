@@ -6,7 +6,7 @@
 #include <iostream>
 #include <string>
 #include <algorithm>
-#include <chrono>
+#include <iomanip>
 
 
 static int parseInt(const char* cstr)
@@ -72,6 +72,13 @@ static void printVec(const std::vector<int>& vec)
 	std::cout << '\n';
 }
 
+static void printTimer(double elapsed, const char* containerName, size_t size)
+{
+	std::cout << "Time to process a range of " << size
+		<< " elements with std::" << containerName
+		<< " : " << elapsed * 1e6 << " us\n";
+}
+
 // static void miSortVector(std::vector<int>& vec)
 // {
 
@@ -81,6 +88,8 @@ static void printVec(const std::vector<int>& vec)
 
 void PmergeMe::pmerge(int ac, char* av[])
 {
+	std::cout << std::fixed << std::setprecision(5);
+
 	std::vector<int> vec;
 	std::list<int> lst;
 
@@ -90,8 +99,41 @@ void PmergeMe::pmerge(int ac, char* av[])
 	std::cout << "Before: ";
 	printVec(vec);
 	
+	Timer t;
 	// miSortVector(vec);
+	double elapsed = t.elapsed();
 
 	std::cout << "After:  ";
 	printVec(vec);
+	printTimer(elapsed, "vector", vec.size());
+
+	t.reset();
+	// miSortList(lst);
+	elapsed = t.elapsed();
+	printTimer(elapsed, "list  ", vec.size());
+}
+
+Timer::Timer()
+{
+	clock_gettime(CLOCK_MONOTONIC, &start_);
+}
+
+Timer::~Timer()
+{
+}
+
+void Timer::reset()
+{
+	clock_gettime(CLOCK_MONOTONIC, &start_);
+}
+
+double Timer::elapsed() const
+{
+	struct timespec end;
+
+	clock_gettime(CLOCK_MONOTONIC, &end);
+	double elapsedTime;
+	elapsedTime = (end.tv_sec - start_.tv_sec) * 1e9;
+	elapsedTime = (elapsedTime + (end.tv_nsec - start_.tv_nsec)) * 1e-9;
+	return elapsedTime;
 }
