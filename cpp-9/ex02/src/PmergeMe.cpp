@@ -34,19 +34,16 @@ static int parseInt(const char* cstr)
 	return static_cast<int>(nbr);
 }
 
-static bool parseArgs(
-	int ac, char* av[],
-	std::vector<int>& vecOut, std::list<int>& lstOut)
+static bool parseArgs(int ac, char* av[], std::vector<int>& sequence)
 {
 	for (int i = 0; i < ac; ++i)
 	{
 		try
 		{
 			int parsedInt = parseInt(av[i]);
-			if (std::find(vecOut.begin(), vecOut.end(), parsedInt) != vecOut.end())
+			if (std::find(sequence.begin(), sequence.end(), parsedInt) != sequence.end())
 				throw "dublicate";
-			vecOut.push_back(parsedInt);
-			lstOut.push_back(parsedInt);
+			sequence.push_back(parsedInt);
 		}
 		catch(const char* e)
 		{
@@ -55,6 +52,16 @@ static bool parseArgs(
 		}
 	}
 	return true;
+}
+
+template <typename T>
+static void fillContainer(const std::vector<int>& src, T& container)
+{
+	for (
+		std::vector<int>::const_iterator it = src.begin();
+		it != src.end();
+		++it)
+		container.push_back(*it);
 }
 
 static void printVec(const std::vector<int>& vec)
@@ -88,29 +95,30 @@ static void printTimer(double elapsed, const char* containerName, size_t size)
 
 void PmergeMe::pmerge(int ac, char* av[])
 {
+	std::vector<int> sequence;
+	if (!parseArgs(ac, av, sequence))
+		return ;
+
 	std::cout << std::fixed << std::setprecision(5);
 
-	std::vector<int> vec;
 	std::list<int> lst;
+	Timer t;
+	fillContainer(sequence, lst);
+	// miSortList(lst);
+	double elapsedLst = t.elapsed();
 
-	if (!parseArgs(ac, av, vec, lst))
-		return ;
-	
+	std::vector<int> vec;
+	t.reset();
+	fillContainer(sequence, vec);
+	// miSortVector(vec);
+	double elapsedVec = t.elapsed();
+
 	std::cout << "Before: ";
 	printVec(vec);
-	
-	Timer t;
-	// miSortVector(vec);
-	double elapsed = t.elapsed();
-
 	std::cout << "After:  ";
 	printVec(vec);
-	printTimer(elapsed, "vector", vec.size());
-
-	t.reset();
-	// miSortList(lst);
-	elapsed = t.elapsed();
-	printTimer(elapsed, "list  ", vec.size());
+	printTimer(elapsedVec, "vector", vec.size());
+	printTimer(elapsedLst, "list  ", vec.size());
 }
 
 Timer::Timer()
