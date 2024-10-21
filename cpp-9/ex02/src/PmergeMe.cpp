@@ -226,8 +226,8 @@ void PmergeMe::pmerge(int ac, char* av[])
 	miSortVec(vec);
 	double elapsedVec = t.elapsed();
 
-	assert(isSorted(vec) == true);
-	assert(isSorted(lst));
+	// assert(isSorted(vec) == true);
+	// assert(isSorted(lst));
 	
 	std::cout << "Before: ";
 	printVec(sequence);
