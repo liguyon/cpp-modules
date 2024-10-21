@@ -124,8 +124,12 @@ static void miSortVec(std::vector<int>& vec)
     }
     miSortVec(larger);
 
-    for (size_t i = 1; i < smaller.size(); ++i)
-        insertVec(larger, smaller[i]);
+    for (
+		std::vector<int>::const_iterator it = smaller.begin();
+		it != smaller.end();
+		++it
+	)
+        insertVec(larger, *it);
 
     vec = larger;
 }
