@@ -10,7 +10,7 @@ Module | Topics
 [cpp-6](https://github.com/liguyon/cpp-modules/tree/main/cpp-6) | casts
 [cpp-7](https://github.com/liguyon/cpp-modules/tree/main/cpp-7) | templates
 [cpp-8](https://github.com/liguyon/cpp-modules/tree/main/cpp-8) | templated containers, iterators, algorithms
-[cpp-9](https://github.com/liguyon/cpp-modules/tree/main/cpp-9) | standard library
+[cpp-9](https://github.com/liguyon/cpp-modules/tree/main/cpp-9) | standard library, containers
 
 
 ## Resources
